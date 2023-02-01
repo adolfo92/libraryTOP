@@ -75,7 +75,16 @@ createBookButton.addEventListener("click", () => {
 
   myForm.style.display = "flex";
 });
-
+// -------------------- Reset library function
+function resetLibrary() {
+  while (bookShelf.hasChildNodes()) {
+    if (bookShelf.lastChild.localName === "div") {
+      bookShelf.removeChild(bookShelf.lastChild);
+    } else {
+      return;
+    }
+  }
+}
 // ------------------- Submit book button
 
 const submitButton = document.querySelector(".submit");
@@ -104,5 +113,6 @@ submitButton.addEventListener("click", (e) => {
   documentBody.removeChild(coverDiv);
   theForm.reset();
   myForm.style.display = "none";
+  resetLibrary();
   displayBooks();
 });
