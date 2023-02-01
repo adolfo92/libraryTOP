@@ -115,4 +115,5 @@ submitButton.addEventListener("click", (e) => {
   myForm.style.display = "none";
   resetLibrary();
   displayBooks();
+  return "sucess";
 });
