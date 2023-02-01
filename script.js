@@ -55,7 +55,7 @@ function displayBooks() {
 
       const keys = Object.keys(item);
 
-      keys.forEach((key) => printBookData("h2", key, item, bookCard));
+      keys.forEach((key) => printBookData("p", key, item, bookCard));
 
       bookCard.appendChild(item.MakeDeleteButton());
     });
@@ -86,6 +86,12 @@ submitButton.addEventListener("click", (e) => {
   const data = new FormData(theForm);
   const finalData = Array.from(data.entries());
 
+  if (finalData[0][1] === "" || finalData[1][1] === "" || finalData[2][1] < 1) {
+    theForm.reset();
+    alert("Necesita agregar datos validos");
+    return console.error("Data invalida");
+  }
+
   const newBook = new Book(
     finalData[0][1],
     finalData[1][1],
@@ -98,4 +104,5 @@ submitButton.addEventListener("click", (e) => {
   documentBody.removeChild(coverDiv);
   theForm.reset();
   myForm.style.display = "none";
+  displayBooks();
 });
