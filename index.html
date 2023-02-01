@@ -4,14 +4,64 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/sandstone/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Document</title>
   </head>
 
   <body>
-    <div class="bookShelf"></div>
+    <div class="bookShelf">
+      <button class="addBook">Add book</button>
+    </div>
 
-    <button class="addBook">Add book</button>
+    <div class="formContainer card card-body">
+      <h2>Ingresa nuevo libro</h2>
+      <form>
+        <input
+          class="form-control"
+          type="text"
+          name="author"
+          placeholder="Autor"
+          required
+        />
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          placeholder="Titulo"
+          required
+        />
+        <input
+          class="form-control"
+          type="number"
+          name="pages"
+          placeholder="Paginas"
+          required
+        />
+        <label>¿Leido?</label>
+        <br />
+        <label for="si" class="form-check-label">Si</label>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="read"
+          value="true"
+          id="si"
+        />
+        <label for="no" class="form-check-label">No</label>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="read"
+          value="false"
+          id="no"
+          checked
+        />
+      </form>
+    </div>
   </body>
 </html>
