@@ -42,7 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 40ch;
-  height: 300px;
+  height: 370px;
   bottom: calc(50% + 210px);
   left: calc(50% - 20ch);
 }
