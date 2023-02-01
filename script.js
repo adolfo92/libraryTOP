@@ -1,20 +1,8 @@
+// --------- Variables de entorno
 const myLibrary = [];
 
 const bookShelf = document.querySelector(".bookShelf");
-
-function MakeBookCardDiv() {
-  const newCard = document.createElement("div");
-  newCard.classList.add("bookCard");
-  return newCard;
-}
-
-function printBookData(htmlTag, ObjectKey, object, container) {
-  const title = document.createElement(htmlTag);
-  title.textContent = `${ObjectKey}: ${object[ObjectKey]}`;
-  title.classList.add(`${ObjectKey}`);
-  container.appendChild(title);
-}
-
+// --------- Book object
 class Book {
   constructor(author, title, pages, read) {
     this.author = author;
@@ -23,6 +11,7 @@ class Book {
     this.read = read;
   }
 }
+// -------- Delete method for button
 Book.prototype.MakeDeleteButton = function () {
   const button = document.createElement("button");
   button.textContent = "Eliminar libro";
@@ -37,12 +26,26 @@ Book.prototype.MakeDeleteButton = function () {
 
   return button;
 };
+// -------- Book publishing handlers
+
+function MakeBookCardDiv() {
+  const newCard = document.createElement("div");
+  newCard.classList.add("bookCard");
+  return newCard;
+}
+
+function printBookData(htmlTag, ObjectKey, object, container) {
+  const title = document.createElement(htmlTag);
+  title.textContent = `${ObjectKey}: ${object[ObjectKey]}`;
+  title.classList.add(`${ObjectKey}`);
+  container.appendChild(title);
+}
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-function displayBook() {
+function displayBooks() {
   if (myLibrary.length > 0) {
     myLibrary.forEach((item) => {
       const bookCard = bookShelf.appendChild(MakeBookCardDiv());
