@@ -2,6 +2,8 @@
 const myLibrary = [];
 
 const bookShelf = document.querySelector(".bookShelf");
+
+const documentBody = document.querySelector("body");
 // --------- Book object
 class Book {
   constructor(author, title, pages, read) {
@@ -59,4 +61,41 @@ function displayBooks() {
     });
   }
 }
-//---------------------
+
+// --------------------- Create book button
+
+const createBookButton = document.querySelector(".addBook");
+
+const myForm = document.querySelector(".formContainer");
+
+createBookButton.addEventListener("click", () => {
+  const coverDiv = document.createElement("div");
+  coverDiv.classList.add("coverDiv");
+  documentBody.appendChild(coverDiv);
+
+  myForm.style.display = "flex";
+});
+
+// ------------------- Submit book button
+
+const submitButton = document.querySelector(".submit");
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const theForm = document.querySelector("#theForm");
+  const data = new FormData(theForm);
+  const finalData = Array.from(data.entries());
+
+  const newBook = new Book(
+    finalData[0][1],
+    finalData[1][1],
+    finalData[2][1],
+    finalData[3][1]
+  );
+
+  addBookToLibrary(newBook);
+  const coverDiv = document.querySelector(".coverDiv");
+  documentBody.removeChild(coverDiv);
+  theForm.reset();
+  myForm.style.display = "none";
+});
