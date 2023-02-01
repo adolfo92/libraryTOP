@@ -13,11 +13,17 @@ class Book {
     this.read = read;
   }
 }
+Book.prototype.makeBookButton = function (className, textContent) {
+  const button = document.createElement("button");
+  button.textContent = textContent;
+  button.classList.add(className);
+  return button;
+};
+
 // -------- Delete method for button
 Book.prototype.MakeDeleteButton = function () {
-  const button = document.createElement("button");
-  button.textContent = "Eliminar libro";
-  button.classList.add("deleteButton");
+  const button = this.makeBookButton("remove", "Eliminar Libro");
+
   button.addEventListener("click", () => {
     myLibrary.splice(
       myLibrary.findIndex((element) => element === this),
@@ -28,6 +34,24 @@ Book.prototype.MakeDeleteButton = function () {
 
   return button;
 };
+// ------------- Toogle Read button
+Book.prototype.toggleRead = function () {
+  const button = this.makeBookButton("readToggler", "Leido");
+
+  button.addEventListener("click", () => {
+    if (this.read === "true") {
+      this.read = "false";
+    } else {
+      this.read = "true";
+    }
+
+    resetLibrary();
+    displayBooks();
+  });
+
+  return button;
+};
+
 // -------- Book publishing handlers
 
 function MakeBookCardDiv() {
@@ -56,7 +80,7 @@ function displayBooks() {
       const keys = Object.keys(item);
 
       keys.forEach((key) => printBookData("p", key, item, bookCard));
-
+      bookCard.appendChild(item.toggleRead());
       bookCard.appendChild(item.MakeDeleteButton());
     });
   }
