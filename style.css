@@ -9,10 +9,24 @@ body {
   height: 100vh;
   z-index: 0;
 }
+.navbar-brand {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+.addBook {
+  margin: 10px;
+  margin-right: 10%;
+}
 .bookShelf {
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+  height: 70vh;
   z-index: 1;
+  display: grid;
+  margin: 5px;
+  grid-template-rows: repeat(auto-fit, minmax(250px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
 }
 .coverDiv {
   position: absolute;
@@ -26,13 +40,19 @@ body {
   justify-content: center;
 }
 .bookCard {
-  width: 200px;
-  height: 200px;
-  background-color: bisque;
+  background-color: #66a2fd;
+  border: solid black 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 5px;
+}
+.read {
+  display: none;
+}
+.bookCard > button {
+  margin: 5px;
 }
 .formContainer {
   position: relative;
