@@ -13,10 +13,12 @@ class Book {
     this.read = read;
   }
 }
-Book.prototype.makeBookButton = function (className, textContent) {
+Book.prototype.makeBookButton = function (className, textContent, btn) {
   const button = document.createElement("button");
   button.textContent = textContent;
   button.classList.add(className);
+  button.classList.add("btn");
+  button.classList.add(btn);
   return button;
 };
 
@@ -36,13 +38,23 @@ Book.prototype.MakeDeleteButton = function () {
 };
 // ------------- Toogle Read button
 Book.prototype.toggleRead = function () {
-  const button = this.makeBookButton("readToggler", "Leido");
+  let button;
+  if (this.read === "true") {
+    button = this.makeBookButton("readToggler", "Leido :)", "btn-success");
+  } else {
+    button = this.makeBookButton("readToggler", "No Leido :(", "btn-danger");
+  }
+  const thisCard = bookShelf.querySelector(`.${this.title}`);
+  const readField = thisCard.querySelector(".read");
+  readField.classList.add("card");
 
   button.addEventListener("click", () => {
     if (this.read === "true") {
       this.read = "false";
+      button.textContent = "No leido";
     } else {
       this.read = "true";
+      button.textContent = "Leido";
     }
 
     resetLibrary();
@@ -76,6 +88,7 @@ function displayBooks() {
     myLibrary.forEach((item) => {
       const bookCard = bookShelf.appendChild(MakeBookCardDiv());
       bookCard.classList.add(`${item.title}`);
+      bookCard.classList.add("card");
 
       const keys = Object.keys(item);
 
