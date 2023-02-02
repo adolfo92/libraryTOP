@@ -44,7 +44,7 @@ body {
   background-color: #cfe0fa;
   border: solid black 2px;
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 2fr 3fr;
 
   flex-direction: column;
   justify-content: center;
