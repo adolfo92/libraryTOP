@@ -24,7 +24,7 @@ Book.prototype.makeBookButton = function (className, textContent, btn) {
 
 // -------- Delete method for button
 Book.prototype.MakeDeleteButton = function () {
-  const button = this.makeBookButton("remove", "Eliminar Libro");
+  const button = this.makeBookButton("remove", "Eliminar Libro", "btn-warning");
 
   button.addEventListener("click", () => {
     myLibrary.splice(
@@ -72,11 +72,14 @@ function MakeBookCardDiv() {
   return newCard;
 }
 
-function printBookData(htmlTag, ObjectKey, object, container) {
-  const title = document.createElement(htmlTag);
-  title.textContent = `${ObjectKey}: ${object[ObjectKey]}`;
+function printBookData(htmlTagKey, htmlTagValue, ObjectKey, object, container) {
+  const title = document.createElement(htmlTagKey);
+  const content = document.createElement(htmlTagValue);
+  title.textContent = `${ObjectKey.toUpperCase()}:`;
+  content.textContent = `${object[ObjectKey]}`;
   title.classList.add(`${ObjectKey}`);
   container.appendChild(title);
+  container.appendChild(content);
 }
 
 function addBookToLibrary(book) {
@@ -92,7 +95,7 @@ function displayBooks() {
 
       const keys = Object.keys(item);
 
-      keys.forEach((key) => printBookData("p", key, item, bookCard));
+      keys.forEach((key) => printBookData("h2", "p", key, item, bookCard));
       bookCard.appendChild(item.toggleRead());
       bookCard.appendChild(item.MakeDeleteButton());
     });
