@@ -133,7 +133,10 @@ submitButton.addEventListener("click", (e) => {
 
   const theForm = document.querySelector("#theForm");
   const data = new FormData(theForm);
-  const finalData = Array.from(data.entries());
+  const finalData = Array.from(data.entries()).map(([key, value]) => [
+    key,
+    value.replace(/ /g, "_"),
+  ]);
 
   if (finalData[0][1] === "" || finalData[1][1] === "" || finalData[2][1] < 1) {
     theForm.reset();
